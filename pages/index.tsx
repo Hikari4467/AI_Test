@@ -5,13 +5,19 @@ export default function Home() {
   const [response, setResponse] = useState('');
 
   const handleSend = async () => {
-    const res = await fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message })
-    });
-    const data = await res.json();
-    setResponse(data.reply);
+    if (!message.trim()) return; // 空送信防止
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message }), // 正常に送信
+      });
+
+      const data = await res.json();
+      setResponse(data.reply || '返答がありませんでした');
+    } catch (error) {
+      setResponse('エラーが発生しました');
+    }
   };
 
   return (
