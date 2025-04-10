@@ -17,9 +17,19 @@ export default function Home() {
   return (
     <div style={{ padding: 20 }}>
       <h1>庄内マグナム AI接客</h1>
-      <textarea value={message} onChange={(e) => setMessage(e.target.value)} />
+      <textarea
+        rows={4}
+        cols={40}
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        placeholder="メッセージを入力してください"
+      />
+      <br />
       <button onClick={handleSend}>送信</button>
-      <pre>{response}</pre>
+      <div style={{ marginTop: 20 }}>
+        <strong>AIの返答：</strong>
+        <p>{response}</p>
+      </div>
     </div>
   );
 }
