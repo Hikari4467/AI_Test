@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 
 export default function Home() {
@@ -5,14 +6,13 @@ export default function Home() {
   const [response, setResponse] = useState('');
 
   const handleSend = async () => {
-    if (!message.trim()) return; // 空送信防止
+    if (!message.trim()) return;
     try {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message }), // 正常に送信
+        body: JSON.stringify({ message })
       });
-
       const data = await res.json();
       setResponse(data.reply || '返答がありませんでした');
     } catch (error) {

@@ -12,6 +12,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(400).json({ error: 'Message is required' });
   }
 
-  // 仮応答（AI連携ではなくダミー返答）
   res.status(200).json({ reply: `あなたのメッセージ: ${message}` });
 }
